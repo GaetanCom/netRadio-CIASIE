@@ -1,0 +1,25 @@
+.menu_item {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px;
+    transition: 0.5s;
+}
+
+.menu_item:hover {
+    background-color: #202020;
+    transition: 0.5s;
+
+}
+
+.menu_item > a {
+    color: #EEEEEE;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
