@@ -1,5 +1,4 @@
 import React from 'react';
-import Switch, { Case, Default } from 'react-switch-case';
 
 import MenuItem from '../items/MenuItem';
 
@@ -9,26 +8,38 @@ const UserMenu = (props) => {
 
     return(
         <div className="userMenu">
-            <Switch condition={props.user}>
-                <Case value="visitor">
-                    <MenuItem name="SE CONNECTER"/>
-                </Case>
+            {(() => {
 
-                <Case value="auditor">
-                    <MenuItem name="DEMANDES DE DROITS"/> 
-                    <MenuItem name="USERNAME"/>
-                </Case>
+                switch(props.user) {
+                    case 'announcer':
+                        return (
+                            <React.Fragment>
+                                <MenuItem name="USERNAME"/>
+                            </React.Fragment>
+                        )
+                    case 'auditor':
+                        return (
+                            <React.Fragment>
+                                <MenuItem name="DEMANDES DE DROITS"/> 
+                                <MenuItem name="USERNAME"/>
+                            </React.Fragment>
+                        )
+                    case 'admin':
+                        return (
+                            <React.Fragment>
+                                <MenuItem name="DROITS"/> 
+                                <MenuItem name="DEMANDES DE DROITS"/> 
+                                <MenuItem name="USERNAME"/>                                
+                            </React.Fragment>
+                        )
+                    default:
+                        <React.Fragment>
+                            <MenuItem name="SE CONNECTER"/>
+                        </React.Fragment>
+                }
 
-                <Case value="admin">
-                    <MenuItem name="DROITS"/> 
-                    <MenuItem name="DEMANDES DE DROITS"/> 
-                    <MenuItem name="USERNAME"/>
-                </Case>
+            })}
 
-                <Case value="announcer">
-                <MenuItem name="USERNAME"/>
-                </Case>
-            </Switch>
             {props.user === "visitor" ?
                 <MenuItem name="S'INSCRIRE"/>:
                 <MenuItem name="SE DECONNECTER"/>
