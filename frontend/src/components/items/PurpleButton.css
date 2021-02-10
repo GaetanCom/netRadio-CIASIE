@@ -1,0 +1,8 @@
+.purpleButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #9741F7;
+    color: #EEEEEE;
+    width: 75%;
+}

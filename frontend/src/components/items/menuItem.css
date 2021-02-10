@@ -6,6 +6,7 @@
     justify-content: center;
     border: 3px;
     transition: 0.5s;
+    margin: 3% 0;
 }
 
 .menu_item:hover {
