@@ -3,7 +3,7 @@ import './Subtext.css';
 
 const Subtext = props => {
     return (
-        <h2 className="subtext">{props.text}</h2>
+        <p className="subtext">{props.text}</p>
     )
 }
 
