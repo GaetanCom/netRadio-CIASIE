@@ -22,16 +22,16 @@ services:
     env_file:
       - ./backend/.env.dev
   
-  front.radio:
-    build:
-      context: .
-    ports: 
-      - "3000:3000"
-    container_name: front.radio
-    stdin_open: true
-    volumes:
-      - ./frontend:/usr/src/app/frontend
-      - ./frontend/node_modules:/usr/src/outside/node_modules
+  # front.radio:
+  #   build:
+  #     context: .
+  #   ports: 
+  #     - "3000:3000"
+  #   container_name: front.radio
+  #   stdin_open: true
+  #   volumes:
+  #     - ./frontend:/usr/src/app/frontend
+  #     - ./frontend/node_modules:/usr/src/outside/node_modules
 
   mysql.radio:
     image: mariadb:latest
