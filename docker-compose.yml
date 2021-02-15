@@ -11,9 +11,9 @@ services:
     ports:
       - "19080:3000"
     volumes:
-      - ./backend:/usr/src/app
+      - ./backend:/usr/src/app/backend
       - ./backend/node_modules:/usr/src/outside/node_modules
-    working_dir: /usr/src/app
+    working_dir: /usr/src/app/backend
     command: bash -c 'npm i && npm run dev'
     links:
       - mysql.radio
@@ -22,16 +22,24 @@ services:
     env_file:
       - ./backend/.env.dev
   
-  # front.radio:
-  #   build:
-  #     context: .
-  #   ports: 
-  #     - "3000:3000"
-  #   container_name: front.radio
-  #   stdin_open: true
-  #   volumes:
-  #     - ./frontend:/usr/src/app/frontend
-  #     - ./frontend/node_modules:/usr/src/outside/node_modules
+  front.radio:
+    container_name: front.radio
+    image: node
+    ports: 
+      - "3000:3000"
+    volumes:
+      - ./frontend:/usr/src/app/frontend
+      - ./frontend/node_modules:/usr/src/outside/node_modules
+    working_dir: /usr/src/app/frontend
+    command: bash -c 'npm i && npm start'
+    links:
+      - mysql.radio
+    networks:
+      - netradio.net
+    env_file:
+      - ./frontend/.env.dev
+    stdin_open: true
+
 
   mysql.radio:
     image: mariadb:latest
