@@ -1,34 +1,54 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import socketIOClient from "socket.io-client";
 
 import './Player.css';
 
-class Player extends Component {
+const ENDPOINT = "http://localhost:19080/player/auditor/play";
 
-    state = {
-        player: true
+const Player = () => {
+
+    const [player, setPlayer] = useState(true);
+    const [response, setResponse] = useState("");
+
+    useEffect(() => {
+        const socket = socketIOClient(ENDPOINT);
+        socket.on("FromAPI", data => {
+          setResponse(data);
+        });
+
+        return () => socket.disconnect();
+      }, []);
+
+    const onPlay = () => {
+
+        setPlayer(!player);
+
+        let socket = socketIOClient(ENDPOINT);
+        
+        if(player) {
+            socket = socketIOClient(ENDPOINT);
+        } else  {
+            const OTHERENDPOINT = "http://localhost:19080/player/auditor/stop"
+            socket = socketIOClient(OTHERENDPOINT);
+        }
+        
+        socket.on("FromAPI", data => {
+          setResponse(data);
+        });
+
+        
     }
 
-    onPlay = () => {
-        this.setState({player: !this.state.player})
-    }
-
-    render() {
-
-        return (
-            <div className="player">
-
-                <div className="player_informations">
-                    {this.state.player ?
-                        <div className="player_informations_pause" onClick={this.onPlay}></div>:
-                        <div className="player_informations_play" onClick={this.onPlay}></div>
-                    }
-                    
-                </div>
-
+    return (
+        <div className="player">
+            <div className="player_informations">
+                {player ?
+                    <React.Fragment><div className="player_informations_pause" onClick={onPlay}></div>{response}</React.Fragment>:
+                    <div className="player_informations_play" onClick={onPlay}></div>
+                }              
             </div>
-        );
-
-    }
+        </div>
+    );
 
 }
 
