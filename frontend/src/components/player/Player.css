@@ -1,0 +1,25 @@
+.player {
+    display: flex;
+    flex-direction: column;
+}
+
+.player_informations_pause {
+    border-style: solid;
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    border-width: 29px 0px 29px 50px;
+    border-color: transparent transparent transparent #EEE;
+}
+
+.player_informations_pause:hover {
+    cursor: pointer;
+}
+
+.player_informations_play {
+    width: 50px;
+    height: 50px;
+    border-style: double;
+    border-width: 0px 0px 0px 37px;
+    border-color: #EEE;
+}
