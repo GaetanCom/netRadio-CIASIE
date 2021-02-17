@@ -5,68 +5,58 @@ networks:
     driver: bridge
 
 services:
-  api.radio:
-    container_name: api.radio
-    image: node
-    ports:
-      - "19180:3000"
-    volumes:
-      - ./backend:/usr/src/app
-      - ./backend/node_modules:/usr/src/outside/node_modules
-    working_dir: /usr/src/app
-    command: bash -c 'npm i && npm run dev'
-    links:
-      - mysql.radio
-    networks:
-      - netradio.net
-    env_file:
-      - ./backend/.env.dev
-  
   front.radio:
     container_name: front.radio
     image: node
     ports: 
       - "3000:3000"
     volumes:
-      - ./frontend:/usr/src/app
-      - ./frontend/node_modules:/usr/src/outside/node_modules
-    working_dir: /usr/src/app
+      - ./frontend:/usr/src/app/frontend
+      - ./frontend/node_modules:/usr/src/outside/frontend/node_modules
+    working_dir: /usr/src/app/frontend
     command: bash -c 'npm i && npm start'
-    links:
-      - mysql.radio
     networks:
       - netradio.net
-    env_file:
-      - ./frontend/.env.dev
-    stdin_open: true
 
-
-  mysql.radio:
-    container_name: mysql.radio
-    image: mariadb:latest
-    restart: always
-    command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
-    env_file:
-      - ./backend/mysql/.env.dev
-    ports: 
-      - "3307:3306"
-    volumes:
-      - ./backend/mysql_data:/var/lib/mysql
-    networks:
-      - netradio.net
-      
-  phpmyadmin.radio:
-    container_name: phpmyadmin.radio
-    image: phpmyadmin
-    restart: always
+  back.radio:
+    container_name: back.radio
+    image: node
     ports:
-      - 8080:80
-    environment: 
-      - PMA_ARBITRARY=1
-    links:
-      - mysql.radio
+      - "19080:19080"
+    volumes:
+      - ./backend:/usr/src/app/backend
+      - ./backend/node_modules:/usr/src/outside/backend/node_modules
+    working_dir: /usr/src/app/backend
+    command: bash -c 'npm i && npm run start'
     networks:
       - netradio.net
+    
+  # mysql.radio:
+  #   container_name: mysql.radio
+  #   image: mariadb:latest
+  #   restart: always
+  #   command: --default-authentication-plugin=mysql_native_password --character-set-server=utf8 --collation-server=utf8_general_ci
+  #   env_file:
+  #     - ./backend/mysql/.env.dev
+  #   ports: 
+  #     - "3307:3306"
+  #   volumes:
+  #     - ./backend/mysql_data:/var/lib/mysql
+  #   networks:
+  #     - netradio.net
+      
+  # phpmyadmin.radio:
+  #   container_name: phpmyadmin.radio
+  #   image: phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - 8080:80
+  #   environment: 
+  #     - PMA_ARBITRARY=1
+  #   links:
+  #     - mysql.radio
+  #   networks:
+  #     - netradio.net
 
 
 

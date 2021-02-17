@@ -1,40 +1,39 @@
 import React, { useState, useEffect } from 'react';
-// import socketIOClient from "socket.io-client";
+import socketIOClient from "socket.io-client";
 
 import './Player.css';
 
-// const ENDPOINT = "http://localhost:19080/player/auditor/play";
+const ENDPOINT = "http://localhost:19080";
 
 const Player = () => {
 
-    const [player, setPlayer] = useState(true);
-    // const [response, setResponse] = useState("");
+    const [player, setPlayer] = useState(false);
+    const [response, setResponse] = useState("");
 
-    // useEffect(() => {
-    //     const socket = socketIOClient(ENDPOINT);
-    //     socket.on("FromAPI", data => {
-    //       setResponse(data);
-    //     });
+    useEffect(() => {
+        const socket = socketIOClient(ENDPOINT + "/play/auditor/play");
+        socket.on("FromAPI", data => {
+          setResponse(data);
+        });
 
-    //     return () => socket.disconnect();
-    //   }, []);
+        return () => socket.disconnect();
+      }, []);
 
     const onPlay = () => {
 
         setPlayer(!player);
 
-        // let socket = socketIOClient(ENDPOINT);
+        let socket = socketIOClient(ENDPOINT+ "/play/auditor/play");
         
-        // if(player) {
-        //     socket = socketIOClient(ENDPOINT);
-        // } else  {
-        //     const OTHERENDPOINT = "http://localhost:19080/player/auditor/stop"
-        //     socket = socketIOClient(OTHERENDPOINT);
-        // }
+        if(player) {
+            socket = socketIOClient(ENDPOINT+ "/play/auditor/play");
+        } else  {
+            socket = socketIOClient(ENDPOINT+ "/play/auditor/play");
+        }
         
-        // socket.on("FromAPI", data => {
-        //   setResponse(data);
-        // });
+        socket.on("FromAPI", data => {
+          setResponse(data);
+        });
 
         
     }
