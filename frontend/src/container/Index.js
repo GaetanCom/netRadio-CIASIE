@@ -6,6 +6,7 @@ import Title from '../components/items/Title';
 import Subtitle from '../components/items/Subtitle';
 import Subtext from '../components/items/Subtext';
 import Player from '../components/player/Player';
+import HeaderLogo from '../components/items/HeaderLogo';
 
 class Index extends Component {
 
@@ -15,6 +16,7 @@ class Index extends Component {
 
             <div className="indexBody">
                 <div>
+                    <HeaderLogo></HeaderLogo>
                     <Title text="KEDUMA EST EN LIVE" />
                     <Subtitle text="Overwatch un dead Game ?" />
                     <Player />
