@@ -1,0 +1,70 @@
+.emission{
+    background-color: rgb(77, 77, 77);
+    width: 40%;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+.c1{
+    display: flex;
+    justify-content: space-between;
+}
+
+.name{
+    color: #00ffba;
+    font-weight: bold;
+}
+
+.presenter{
+    color: #9741f7;
+}
+
+.guests{
+    color: white;
+    font-size: 13px;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.category{
+    color: white;
+    font-size: 11px;
+    background-color: #9741f7;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    padding-top: 2px;
+    border-radius: 10px;
+}
+
+.text{
+    height: 107px;
+    overflow: hidden;
+    color: white;
+    font-size: 11px;
+    text-overflow : ellipsis '...';
+}
+
+a{
+outline: none;
+text-decoration: none;
+padding: 2px 1px 0;
+font-size: 11px;
+}
+a:link {
+color: white;
+}
+a:visited {
+color: white;
+}
+a:focus {
+border-bottom: 1px solid;
+background: white;
+}
+a:hover {
+border-bottom: 1px solid;
+}
+a:active {
+background: white;
+color: white;
+}
