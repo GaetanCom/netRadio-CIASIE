@@ -1,17 +1,14 @@
 const express = require('express');
 const app = express();
 var http = require('http').createServer(app);
-var mySocket = require('socket.io')(http);
-
-mySocket.on("connection", () => {
-    console.log(("connect"));
-})
-var AudioContext = require('web-audio-api').AudioContext, context = new AudioContext
-var buffer, bufferSource;
+var io = require('socket.io')(http);
 
 exports.play = async (req, res, next) => {
 
-    mySocket.on('stream', function (packet) {
+    let AudioContext = require('web-audio-api').AudioContext, context = new AudioContext
+    let buffer, bufferSource;
+    
+    io.on('stream',  (packet) => {
         //console.log(deserialize(packet));
         buffer = context.createBuffer(1, 16384, 10000)
         bufferSource = context.createBufferSource()
@@ -25,7 +22,7 @@ exports.play = async (req, res, next) => {
 
 exports.stop = async (req, res, next) => {
 
-    mySocket.on('stream', function (packet) {
+    io.on('stream', function (packet) {
         //console.log(deserialize(packet));
         buffer = context.createBuffer(1, 16384, 10000)
         bufferSource = context.createBufferSource()
