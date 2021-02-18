@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
 
-const local_post = 19080;
+const local_post = 3000;
 
 const audioRoutes = require('./routes/audio-routes');
 
-app.get('/', (req, res, next) => {
+app.get('/api', (req, res, next) => {
     res.send("Application Netradio")
 });
 

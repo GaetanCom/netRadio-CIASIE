@@ -14,22 +14,22 @@ services:
       - ./frontend:/usr/src/app/frontend
       - ./frontend/node_modules:/usr/src/outside/frontend/node_modules
     working_dir: /usr/src/app/frontend
-    command: bash -c 'npm i && npm start'
+    command: bash -c 'npm i && npm start && npm run start'
     networks:
       - netradio.net
 
-  back.radio:
-    container_name: back.radio
-    image: node
-    ports:
-      - "19080:19080"
-    volumes:
-      - ./backend:/usr/src/app/backend
-      - ./backend/node_modules:/usr/src/outside/backend/node_modules
-    working_dir: /usr/src/app/backend
-    command: bash -c 'npm i && npm run start'
-    networks:
-      - netradio.net
+  # back.radio:
+  #   container_name: back.radio
+  #   image: node
+  #   ports:
+  #     - "19080:19080"
+  #   volumes:
+  #     - ./backend:/usr/src/app/backend
+  #     - ./backend/node_modules:/usr/src/outside/backend/node_modules
+  #   working_dir: /usr/src/app/backend
+  #   command: bash -c 'npm i && npm run start'
+  #   networks:
+  #     - netradio.net
     
   # mysql.radio:
   #   container_name: mysql.radio
