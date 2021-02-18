@@ -1,0 +1,10 @@
+#headerLogo{
+    /*background-color: purple;*/
+    height: 15%;
+    max-width: 100%;
+    text-align: center;
+}
+
+img{
+    max-width : 20%;
+}
