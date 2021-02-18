@@ -25,8 +25,9 @@ class Menu extends Component {
     render() {
         // const user = "auditor";
         // const user = "visitor";
-        const user = "admin";
+        // const user = "admin";
         // const user = "announcer";
+        const user = "admin";
         return(
             <div className="menu">
                 <div className="menu-header">

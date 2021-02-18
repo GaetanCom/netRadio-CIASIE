@@ -5,7 +5,7 @@ const Barre_recherche = props => {
     return (
         <div className="barre_recherche">
             <form id="searchbox" method="get" action="/search">
-                <input id="barre" name="q" type="text" size="15" placeholder="Type here… " />
+                <input id="barre" name="q" type="text" placeholder="Type here… " />
                 <input id="button-submit" type="submit" value="Search" />
             </form>
         </div>
