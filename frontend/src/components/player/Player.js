@@ -10,15 +10,15 @@ const Player = () => {
     const [player, setPlayer] = useState(false);
     const [response, setResponse] = useState("");
 
-    useEffect(() => {
-        const socket = io(SERVER);
-        socket.on("connection", (data) => {
-            console.log(`I'm connected with the back-end`);
-            setResponse(data);
-        });
+    // useEffect(() => {
+    //     const socket = io(SERVER);
+    //     socket.on("connection", (data) => {
+    //         console.log(`I'm connected with the back-end`);
+    //         setResponse(data);
+    //     });
 
-        return () => socket.disconnect();
-    }, []);
+    //     return () => socket.disconnect();
+    // }, []);
 
     const onPlay = () => {
 

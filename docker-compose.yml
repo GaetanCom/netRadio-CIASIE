@@ -13,12 +13,10 @@ services:
     volumes:
       - ./frontend:/usr/src/app/frontend
       - ./frontend/node_modules:/usr/src/outside/frontend/node_modules
-      - ./frontend/backend:/usr/src/app/frontend/backend
-      - ./frontend/backend/node_modules:/usr/src/outside/frontend/node_modules
-    working_dir: /usr/src/app/frontend
-    command: 
-      - bash -c 'npm i && npm start'
-      - bash -c 'cd backend && npm i && npm run start'
+      - ./:/usr/src/app/
+      - ./node_modules:/usr/src/outside/node_modules
+    working_dir: /usr/src/app
+    command: bash -c 'npm i && npm run dev'
     networks:
       - netradio.net
 

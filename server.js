@@ -5,9 +5,17 @@ let http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
 
-const local_post = 3000;
+const local_post = 5000;
 
-const audioRoutes = require('../backend/routes/audio-routes');
+const audioRoutes = require('./backend/routes/audio-routes');
+
+app.get('/api', (req, res, next) => {
+  res.send("Application Netradio")
+});
+
+app.listen(local_post, () => {
+  console.log("application lancée")
+})
 
 // http.createServer((req, res) => {
 //     const headers = {
@@ -55,9 +63,13 @@ const audioRoutes = require('../backend/routes/audio-routes');
 //     // })
 // });
 
-app.get('/app/test', (req, res, next) => {
-    res.send("Application Netradio")
-});
+// app.get('/app/test', (req, res, next) => {
+//     res.send("Application Netradio")
+// });
 
 // app.use('/', (req, res) => {audioRoutes})
+
+// app.listen(local_post, () => {
+//   console.log("application lancée")
+// })
 
